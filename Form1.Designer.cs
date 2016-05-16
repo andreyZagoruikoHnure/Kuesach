@@ -35,10 +35,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.SuspendLayout();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Дата = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Напоминание = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Удалить = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -94,31 +96,44 @@
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 5;
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.splitContainer1.Location = new System.Drawing.Point(12, 18);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Silver;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Silver;
-            this.splitContainer1.Size = new System.Drawing.Size(516, 464);
-            this.splitContainer1.SplitterDistance = 124;
-            this.splitContainer1.TabIndex = 6;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(537, 490);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "{MyName}";
+            this.label1.Text = myName;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Дата,
+            this.Напоминание,
+            this.Удалить});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 9);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(516, 417);
+            this.dataGridView1.TabIndex = 8;
+            // 
+            // Дата
+            // 
+            this.Дата.HeaderText = "Дата";
+            this.Дата.Name = "Дата";
+            // 
+            // Напоминание
+            // 
+            this.Напоминание.HeaderText = "Напоминание";
+            this.Напоминание.Name = "Напоминание";
+            this.Напоминание.Width = 340;
+            // 
+            // Удалить
+            // 
+            this.Удалить.HeaderText = "Удалить";
+            this.Удалить.Name = "Удалить";
+            this.Удалить.Width = 32;
             // 
             // Form1
             // 
@@ -127,8 +142,8 @@
             this.BackgroundImage = global::TheDairyKursovaya.Properties.Resources.BackGr;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(734, 512);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -139,9 +154,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Ежидневник";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,8 +170,11 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Дата;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Напоминание;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Удалить;
     }
 }
 

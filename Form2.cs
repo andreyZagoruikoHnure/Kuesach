@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TheDairyKursovaya
 {
@@ -28,11 +29,10 @@ namespace TheDairyKursovaya
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(lines[0]);
+            lines[0] = textBox1.Text + " " + textBox2.Text;
+            Form1 form1 = new Form1(lines);
+            form1.Show();
             this.Close();
-            string myName = textBox1.Text + " " + textBox2.Text;
-            MessageBox.Show(myName);
-            
         }
     }
 }
