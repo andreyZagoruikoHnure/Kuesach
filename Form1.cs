@@ -14,90 +14,179 @@ namespace TheDairyKursovaya
     public partial class Form1 : Form
     {
         string[] lines;
-        string myName = "unknown";
-        public Form1(string [] lines)
+        string[] newLines = new string[100];
+        int i = 0; //Rows
+        int a = 1; //newArrays length
+
+        public Form1(string[] lines)
         {
             InitializeComponent();
             this.lines = lines;
-            //button1
-            this.button1.Size = new System.Drawing.Size(130, 98);
-            ///////////////////////////////////////////////////////
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddEllipse(4, 4, 40, 40);
-            Region rgn = new Region(path);
-            button1.Region = rgn;
             button1.BackColor = Color.Red;
-            //button1,2
-            this.button2.Size = new System.Drawing.Size(130, 98);
-            ///////////////////////////////////////////////////////
-            System.Drawing.Drawing2D.GraphicsPath path2 = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddEllipse(4, 4, 40, 40);
-            Region rgn2 = new Region(path);
-            button2.Region = rgn;
             button2.BackColor = Color.DeepPink;
-            //button2,3
-            this.button3.Size = new System.Drawing.Size(130, 98);
-            ///////////////////////////////////////////////////////
-            System.Drawing.Drawing2D.GraphicsPath path3 = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddEllipse(4, 4, 40, 40);
-            Region rgn3 = new Region(path);
-            button3.Region = rgn;
             button3.BackColor = Color.Blue;
-            //button3,4
-            this.button4.Size = new System.Drawing.Size(130, 98);
-            ///////////////////////////////////////////////////////
-            System.Drawing.Drawing2D.GraphicsPath path4 = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddEllipse(4, 4, 40, 40);
-            Region rgn4 = new Region(path);
-            button4.Region = rgn;
             button4.BackColor = Color.Yellow;
-            //button4,5
-            this.button5.Size = new System.Drawing.Size(130, 98);
-            ///////////////////////////////////////////////////////
-            System.Drawing.Drawing2D.GraphicsPath path5 = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddEllipse(4, 4, 40, 40);
-            Region rgn5 = new Region(path);
-            button5.Region = rgn;
-            button5.BackColor = Color.Green;
-            //button5
         }
+
+        public void saveToArray()
+        {
+            newLines[a] = textBox1.Text;
+            ++a;
+            newLines[a] = textBox2.Text;
+            ++a;
+            newLines[a] = textBox3.Text;
+            ++a;
+            newLines[a] = textBox4.Text;
+            ++a;
+            newLines[a] = textBox5.Text;
+            ++a;
+        }
+
+        public void AddARemind()
+        {
+            dataGridView1.Rows.Add();
+            dataGridView1.Rows[i].Cells[0].Value = textBox1.Text;
+            dataGridView1.Rows[i].Cells[1].Value = textBox2.Text;
+            dataGridView1.Rows[i].Cells[2].Value = textBox3.Text;
+            dataGridView1.Rows[i].Cells[3].Value = textBox4.Text;
+            dataGridView1.Rows[i].Cells[4].Value = textBox5.Text;
+            if (i % 2 == 0)
+            {
+                dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+            }
+            else
+            {
+                dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.GreenYellow;
+            }
+            saveToArray();
+            ++i;
+            newLines[0] = lines[0];
+        }
+
+        public void DeleteAnRemind(int currentRow)
+        {
+            int curentRow = 0;
+            while (curentRow <= i)
+            {
+                if (currentRow == 0)
+                {
+                        lines[currentRow * 5] = lines[lines.Length - 5];
+                        lines[(currentRow * 5) + 1] = lines[lines.Length - 4];
+                        lines[(currentRow * 5) + 2] = lines[lines.Length - 3];
+                        lines[(currentRow * 5) + 3] = lines[lines.Length - 2];
+                        lines[(currentRow * 5) + 4] = lines[lines.Length - 1];                
+                }
+                //++currentRow;
+                CreateAGrid(lines);
+            }
+        }
+    
+        public void clearTheArraysItem(int item)
+        {
+            if (item != 0)
+            {
+                lines[item * 5] = lines[i - 5];
+                lines[(item * 5) + 1] = lines[i - 4];
+                lines[(item * 5) + 2] = lines[i - 3];
+                lines[(item * 5) + 3] = lines[i - 2];
+                lines[(item * 5) + 4] = lines[i - 1];
+            }
+            else
+            {
+                lines[1] = lines[i - 5];
+                lines[2] = lines[i - 4];
+                lines[3] = lines[i - 3];
+                lines[4] = lines[i - 2];
+                lines[5] = lines[i - 1];
+            }
+        }
+
+        public void CreateAGrid(string[] lines)
+        {
+            int lengthOfArray = lines.Length - 2;
+            int m = 1;
+            while (i <= lengthOfArray / 5)
+            {
+                dataGridView1.Rows.Add();   
+                dataGridView1.Rows[i].Cells[0].Value = lines[m];
+                dataGridView1.Rows[i].Cells[1].Value = lines[m + 1];
+                dataGridView1.Rows[i].Cells[2].Value = lines[m + 2];
+                dataGridView1.Rows[i].Cells[3].Value = lines[m + 3];
+                dataGridView1.Rows[i].Cells[4].Value = lines[m + 4];
+                if (i%2==0)
+                { 
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                }
+                else
+                {
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.GreenYellow;
+                }
+                m = m + 5;
+                ++i;
+            }
+        }
+
+        public void AlertOfTheClosest(string[] lines)
+        {
+            MessageBox.Show("db");
+        }
+        //OnLoad
         private void Form1_Load(object sender, EventArgs e)
         {
             if (lines[0] == "0")
             {
                 Form2 form2 = new Form2(lines);
                 form2.Show();
-                this.Close();
             }
             else
             {
-                myName = lines[0];
-                int lengthOfArrey = lines.Length - 2;
-                int i = 0;
-                int a = 1;
-                while (i <= lengthOfArrey / 2)
-                {
-                    dataGridView1.Rows.Add();
-                    dataGridView1.Rows[i].Cells[0].Value = lines[a];
-                    dataGridView1.Rows[i].Cells[1].Value = lines[a+1];
-                    a = a + 2;
-                    ++i;
-                }
+                CreateAGrid(lines);
+                //AlertOfTheClosest(lines);
             }
-
-
         }
+        //Search
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Button works!");
+            Form3 form3 = new Form3();
+            form3.ShowDialog();
         }
-        private void button1_MouseEnter(object sender, EventArgs e)
+        //Closed
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (newLines[0] == "" || newLines[0] == " " || newLines[0] == "0" || newLines[0] == null)
+            {
+                File.WriteAllLines(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt", lines);
+            }
+            else
+            {
+                    for (int t = 1; t < lines.Length && lines[t]!=""; ++t, ++a)
+                {
+                    newLines[a] = lines[t];
+
+                }
+                using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt"))
+                    for (int r = 0; r < a; ++r)
+                {
+                    file.WriteLine(newLines[r]);
+
+                }
+            }
+            }      
+        //Empty
+        private void button3_Click(object sender, EventArgs e)
         {
             
         }
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        //Add
+        private void button5_Click(object sender, EventArgs e)
         {
-            File.WriteAllLines(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt", lines);
+            AddARemind();
+        }
+        //Delete
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DeleteAnRemind(0);
         }
     }
 }

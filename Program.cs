@@ -19,7 +19,14 @@ namespace TheDairyKursovaya
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             string[] lines = File.ReadAllLines(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt");
-            Application.Run(new Form1(lines));
+            if (lines[0] == "0")
+            {
+                Application.Run(new Form2(lines));
+            }
+            else
+            {
+                Application.Run(new Form1(lines)); 
+            }
         }
     }
 }
