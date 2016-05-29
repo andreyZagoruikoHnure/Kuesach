@@ -13,15 +13,15 @@ namespace TheDairyKursovaya
 {
     public partial class Form1 : Form
     {
-        string[] lines;
+        string[] lines = File.ReadAllLines(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt");
         string[] newLines = new string[100];
+        int lengthOfArray;
         int i = 0; //Rows
         int a = 1; //newArrays length
 
-        public Form1(string[] lines)
+        public Form1()
         {
             InitializeComponent();
-            this.lines = lines;
             button1.BackColor = Color.Red;
             button2.BackColor = Color.DeepPink;
             button3.BackColor = Color.Blue;
@@ -63,21 +63,24 @@ namespace TheDairyKursovaya
             newLines[0] = lines[0];
         }
 
-        public void DeleteAnRemind(int currentRow)
+        public void DeleteAnRemind()
         {
-            int curentRow = 0;
-            while (curentRow <= i)
+            int currentRow = 0;
+            while (currentRow <= i)
             {
                 if (currentRow == 0)
                 {
-                        lines[currentRow * 5] = lines[lines.Length - 5];
-                        lines[(currentRow * 5) + 1] = lines[lines.Length - 4];
-                        lines[(currentRow * 5) + 2] = lines[lines.Length - 3];
-                        lines[(currentRow * 5) + 3] = lines[lines.Length - 2];
-                        lines[(currentRow * 5) + 4] = lines[lines.Length - 1];                
+                        lines[(currentRow * 5) + 1] = lines[lines.Length - 5];
+                        lines[(currentRow * 5) + 2] = lines[lines.Length - 4];
+                        lines[(currentRow * 5) + 3] = lines[lines.Length - 3];
+                        lines[(currentRow * 5) + 4] = lines[lines.Length - 2];
+                        lines[(currentRow * 5) + 5] = lines[lines.Length - 1];                
                 }
-                //++currentRow;
+                i = 0;
+                --lengthOfArray;
+                ++currentRow;
                 CreateAGrid(lines);
+                dataGridView1.Rows.RemoveAt(1);
             }
         }
     
@@ -103,7 +106,7 @@ namespace TheDairyKursovaya
 
         public void CreateAGrid(string[] lines)
         {
-            int lengthOfArray = lines.Length - 2;
+            lengthOfArray = lines.Length - 2;
             int m = 1;
             while (i <= lengthOfArray / 5)
             {
@@ -126,7 +129,7 @@ namespace TheDairyKursovaya
             }
         }
 
-        public void AlertOfTheClosest(string[] lines)
+        public void AlertOfTheClosest()
         {
             MessageBox.Show("db");
         }
@@ -135,13 +138,12 @@ namespace TheDairyKursovaya
         {
             if (lines[0] == "0")
             {
-                Form2 form2 = new Form2(lines);
-                form2.Show();
+                MessageBox.Show("What is your name?!");
+                this.Close();
             }
             else
             {
                 CreateAGrid(lines);
-                //AlertOfTheClosest(lines);
             }
         }
         //Search
@@ -150,29 +152,6 @@ namespace TheDairyKursovaya
             Form3 form3 = new Form3();
             form3.ShowDialog();
         }
-        //Closed
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (newLines[0] == "" || newLines[0] == " " || newLines[0] == "0" || newLines[0] == null)
-            {
-                File.WriteAllLines(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt", lines);
-            }
-            else
-            {
-                    for (int t = 1; t < lines.Length && lines[t]!=""; ++t, ++a)
-                {
-                    newLines[a] = lines[t];
-
-                }
-                using (System.IO.StreamWriter file =
-            new System.IO.StreamWriter(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt"))
-                    for (int r = 0; r < a; ++r)
-                {
-                    file.WriteLine(newLines[r]);
-
-                }
-            }
-            }      
         //Empty
         private void button3_Click(object sender, EventArgs e)
         {
@@ -186,7 +165,30 @@ namespace TheDairyKursovaya
         //Delete
         private void button2_Click(object sender, EventArgs e)
         {
-            DeleteAnRemind(0);
+            DeleteAnRemind();
+        }
+        //Closed
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (newLines[0] == "" || newLines[0] == " " || newLines[0] == "0" || newLines[0] == null)
+            {
+                File.WriteAllLines(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt", lines);
+            }
+            else
+            {
+                for (int t = 1; t < lines.Length && lines[t] != ""; ++t, ++a)
+                {
+                    newLines[a] = lines[t];
+
+                }
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt"))
+                    for (int r = 0; r < a; ++r)
+                    {
+                        file.WriteLine(newLines[r]);
+
+                    }
+            }
         }
     }
 }

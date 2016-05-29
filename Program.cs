@@ -15,17 +15,18 @@ namespace TheDairyKursovaya
         [STAThread]
         static void Main()
         {
+            string[] lines = File.ReadAllLines(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string[] lines = File.ReadAllLines(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt");
-            if (lines[0] == "0")
+            if (lines[0]=="0")
             {
-                Application.Run(new Form2(lines));
+                Application.Run(new Form2());
+                Application.Run(new Form1());
+
             }
-            else
-            {
-                Application.Run(new Form1(lines)); 
+            else {
+                Application.Run(new Form1());
             }
         }
     }

@@ -14,30 +14,21 @@ namespace TheDairyKursovaya
 {
     public partial class Form2 : Form
     {
-        string[] lines;
-
-        public Form2(string[] lines)
+        string[] lines = File.ReadAllLines(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt");
+        public Form2()
         {
             InitializeComponent();
-            this.lines = lines;
-        }
-
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            lines[0] = textBox1.Text + " " + textBox2.Text;            
+            lines[0] = textBox1.Text + " " + textBox2.Text;
+            File.WriteAllLines(@"D:\Games\Курсач\TheDairyKursovaya\BDForK.txt", lines);
             this.Close();
         }
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Form1 form1 = new Form1(lines);
-            form1.Show();
         }
     }
 }
+
