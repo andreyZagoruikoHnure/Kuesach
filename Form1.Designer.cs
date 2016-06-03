@@ -36,23 +36,27 @@
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Дата = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Напоминание = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Location = new System.Drawing.Point(792, 250);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(164, 33);
@@ -63,7 +67,8 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(792, 211);
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Location = new System.Drawing.Point(794, 211);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(164, 33);
             this.button2.TabIndex = 1;
@@ -73,6 +78,7 @@
             // 
             // button3
             // 
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Location = new System.Drawing.Point(792, 289);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(164, 33);
@@ -84,6 +90,7 @@
             // button5
             // 
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button5.Location = new System.Drawing.Point(792, 172);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(164, 33);
@@ -124,6 +131,38 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(778, 464);
             this.dataGridView1.TabIndex = 8;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.Width = 30;
+            // 
+            // Дата
+            // 
+            this.Дата.HeaderText = "Дата";
+            this.Дата.Name = "Дата";
+            // 
+            // TimeStart
+            // 
+            this.TimeStart.HeaderText = "Начало";
+            this.TimeStart.Name = "TimeStart";
+            // 
+            // TimeEnd
+            // 
+            this.TimeEnd.HeaderText = "Конец";
+            this.TimeEnd.Name = "TimeEnd";
+            // 
+            // Напоминание
+            // 
+            this.Напоминание.HeaderText = "Напоминание";
+            this.Напоминание.Name = "Напоминание";
+            this.Напоминание.Width = 300;
+            // 
+            // Place
+            // 
+            this.Place.HeaderText = "Место проведения";
+            this.Place.Name = "Place";
             // 
             // textBox2
             // 
@@ -175,37 +214,33 @@
             this.textBox1.TabIndex = 9;
             this.textBox1.Text = "Дата";
             // 
-            // id
+            // button4
             // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.Width = 30;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Location = new System.Drawing.Point(922, 212);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(36, 32);
+            this.button4.TabIndex = 16;
+            this.button4.Text = "ОК";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // Дата
+            // textBox6
             // 
-            this.Дата.HeaderText = "Дата";
-            this.Дата.Name = "Дата";
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox6.Location = new System.Drawing.Point(792, 211);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(124, 31);
+            this.textBox6.TabIndex = 17;
+            this.textBox6.Visible = false;
             // 
-            // TimeStart
+            // textBox7
             // 
-            this.TimeStart.HeaderText = "Начало";
-            this.TimeStart.Name = "TimeStart";
-            // 
-            // TimeEnd
-            // 
-            this.TimeEnd.HeaderText = "Конец";
-            this.TimeEnd.Name = "TimeEnd";
-            // 
-            // Напоминание
-            // 
-            this.Напоминание.HeaderText = "Напоминание";
-            this.Напоминание.Name = "Напоминание";
-            this.Напоминание.Width = 300;
-            // 
-            // Place
-            // 
-            this.Place.HeaderText = "Место проведения";
-            this.Place.Name = "Place";
+            this.textBox7.Location = new System.Drawing.Point(792, 302);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(100, 20);
+            this.textBox7.TabIndex = 18;
             // 
             // Form1
             // 
@@ -214,6 +249,11 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(970, 512);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
@@ -221,8 +261,6 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
@@ -260,6 +298,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Напоминание;
         private System.Windows.Forms.DataGridViewTextBoxColumn Place;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox7;
     }
 }
 

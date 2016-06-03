@@ -36,7 +36,7 @@ namespace TheDairyKursovaya
             int sortedLength = (array.Length - 2) / 5;
             string[] theBigest = new string[5] { array[1], array[2], array[3], array[4], array[5] };
             int year, month, day, year2, month2, day2;
-            year = int.Parse(theBigest[0].Substring(6, 2));  
+            year = int.Parse(theBigest[0].Substring(6, 2));
             month = int.Parse(theBigest[0].Substring(3, 2));
             day = int.Parse(theBigest[0].Substring(0, 2));
             year2 = int.Parse(array[counter].Substring(6, 2));
@@ -182,27 +182,32 @@ namespace TheDairyKursovaya
             ++i;
         }
 
-        public void DeleteAnRemind()
+        public void DeleteAnRemind(int chosenRow)
         {
-            int currentRow = 0;
-            while (currentRow <= i)
+            dataGridView1.Rows.RemoveAt(chosenRow);
+            --i;
+            int count = 0;
+            while (count < i)
             {
-                if (currentRow == 0)
+                if (count % 2 == 0)
                 {
-                        lines[(currentRow * 5) + 1] = lines[lines.Length - 5];
-                        lines[(currentRow * 5) + 2] = lines[lines.Length - 4];
-                        lines[(currentRow * 5) + 3] = lines[lines.Length - 3];
-                        lines[(currentRow * 5) + 4] = lines[lines.Length - 2];
-                        lines[(currentRow * 5) + 5] = lines[lines.Length - 1];                
+                    dataGridView1.Rows[count].DefaultCellStyle.BackColor = Color.DeepSkyBlue;
                 }
-                i = 0;
-                --lengthOfArray;
-                ++currentRow;
-                CreateAGrid(lines);
-                dataGridView1.Rows.RemoveAt(1);
+                else
+                {
+                    dataGridView1.Rows[count].DefaultCellStyle.BackColor = Color.PaleTurquoise;
+                }
+
+                dataGridView1.Rows[count].Cells[0].Value = count.ToString();
+                ++count;
             }
+            //int currentRow = 0;
+            //while (currentRow <= i)
+            //{
+
+            //}
         }
-    
+
         public void clearTheArraysItem(int item)
         {
             if (item != 0)
@@ -236,8 +241,8 @@ namespace TheDairyKursovaya
                 dataGridView1.Rows[i].Cells[3].Value = lines[m + 2];
                 dataGridView1.Rows[i].Cells[4].Value = lines[m + 3];
                 dataGridView1.Rows[i].Cells[5].Value = lines[m + 4];
-                if (i%2==0)
-                { 
+                if (i % 2 == 0)
+                {
                     dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.DeepSkyBlue;
                 }
                 else
@@ -249,21 +254,39 @@ namespace TheDairyKursovaya
             }
         }
 
+        public void Change(int index)
+        {
+            int nextCell = 0;
+            while (nextCell<=i)
+            {
+                if (index == i)
+                {
+
+                }
+                ++nextCell;
+            }
+        }
+
         public void Search()
         {
             Form3 form3 = new Form3();
             form3.Show();
         }
 
-        public void AlertOfTheClosest()
-        {
-            DateTime thisDay = DateTime.Today;
-            string currentData = thisDay.ToString("d");
-            
+        //public void AlertOfTheClosest()
+        //{
+        //    DateTime thisDay = DateTime.Today;
+        //    string currentData = thisDay.ToString("d");
+        //    string closestData = 
+        //    if ()
+        //    {
 
-            MessageBox.Show(currentData);
-        }
+        //    }
+
+        //    MessageBox.Show(currentData);
+        //}
         //OnLoad
+
         private void Form1_Load(object sender, EventArgs e)
         {
             if (lines[0] == "0")
@@ -283,10 +306,10 @@ namespace TheDairyKursovaya
         {
             Search();
         }
-        //Empty
+        //Change
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            Change(int.Parse(textBox7.Text));
         }
         //Add
         private void button5_Click(object sender, EventArgs e)
@@ -297,8 +320,9 @@ namespace TheDairyKursovaya
         //Delete
         private void button2_Click(object sender, EventArgs e)
         {
-            DeleteAnRemind();
-            newLines[0] = lines[0];
+            button2.Visible = false;
+            button4.Visible = true;
+            textBox6.Visible = true;
         }
         //Closed
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -325,6 +349,14 @@ namespace TheDairyKursovaya
 
                     }
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            button2.Visible = true;
+            button4.Visible = false;
+            textBox6.Visible = false;
+            DeleteAnRemind(int.Parse(textBox6.Text));
         }
     }
 }
